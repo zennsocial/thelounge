@@ -91,15 +91,10 @@ h3 {
 	margin: 0;
 }
 
-input {
-	outline: 0;
-}
-
 button {
 	border: none;
 	background: none;
 	margin: 0;
-	outline: none;
 	padding: 0;
 }
 
@@ -160,7 +155,7 @@ kbd {
 	margin-bottom: 10px;
 	padding: 9px 17px;
 	text-transform: uppercase;
-	transition: background 0.2s, border-color 0.2s, color 0.2s;
+	transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
 	word-spacing: 3px;
 	cursor: pointer; /* This is useful for `<button>` elements */
 }
@@ -177,8 +172,15 @@ kbd {
 	opacity: 1;
 }
 
+#chat .search:focus,
+.input:focus,
+.btn:active,
+.btn:focus {
+	outline: 0;
+	box-shadow: 0 0 0 3px rgba(132, 206, 136, 0.5);
+}
+
 .btn:active {
-	box-shadow: none;
 	opacity: 0.8;
 }
 
@@ -857,9 +859,8 @@ background on hover (unless active) */
 	font-size: 14px;
 	margin: 2px 0;
 	margin-bottom: 10px;
-	outline: 0;
 	padding: 8px 10px;
-	transition: border-color 0.2s;
+	transition: border-color 0.2s, box-shadow 0.2s;
 	width: 100%;
 }
 
@@ -867,9 +868,10 @@ background on hover (unless active) */
 	background-color: #ddd;
 }
 
+#chat .search:focus,
 .input:not(:disabled):hover,
 .input:not(:disabled):focus {
-	border-color: #79838c;
+	border-color: #84ce88;
 }
 
 #windows select.input {
@@ -1510,6 +1512,7 @@ part/quit messages where we don't load previews (adds a blank line otherwise) */
 	outline: 0;
 	padding: 13px;
 	width: 100%;
+	transition: box-shadow 0.2s;
 }
 
 #chat .userlist .names {
@@ -2016,7 +2019,6 @@ part/quit messages where we don't load previews (adds a blank line otherwise) */
 #chat .userlist .user.active {
 	background-color: #f6f6f6;
 	transition: none;
-	outline: 0; /* TODO: Handle focus outlines in PR #1873 */
 }
 
 .context-menu-item::before,
