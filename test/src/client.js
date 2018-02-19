@@ -76,6 +76,11 @@ describe("Client", function() {
 				"USER mocha-user 0 * :Mocha User",
 			]);
 
+			client.input({
+				target: client.networks[0].channels[0].id,
+				text: "/disconnect",
+			});
+
 			done();
 		}, 600);
 	});
