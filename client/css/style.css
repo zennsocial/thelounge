@@ -8,6 +8,14 @@
 		url("../fonts/fa-solid-900.woff") format("woff");
 }
 
+@font-face {
+	unicode-range: U+2-4, U+0F, U+16, U+1D, U+1F, U+1E, U+11;
+	font-family: "irc-modifiers";
+	font-weight: normal;
+	font-style: normal;
+	src: url("../fonts/irc-modifiers.woff") format("woff");
+}
+
 html,
 body {
 	height: 100%;
@@ -16,7 +24,7 @@ body {
 body {
 	background: #455164;
 	color: #222;
-	font: 16px -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	font: 16px -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, irc-modifiers;
 	margin: 0;
 	-webkit-user-select: none;
 	-moz-user-select: none;

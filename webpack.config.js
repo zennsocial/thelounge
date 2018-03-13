@@ -87,6 +87,10 @@ const config = {
 				from: "./client/themes/*",
 				to: "themes/[name].[ext]",
 			},
+			{
+				from: "./client/fonts/*",
+				to: "fonts/[name].[ext]",
+			},
 			{ // TODO: Build css with postcss
 				from: "./client/css/*",
 				to: "css/[name].[ext]",
