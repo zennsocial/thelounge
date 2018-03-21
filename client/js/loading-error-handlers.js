@@ -33,7 +33,7 @@
 	}, 5000);
 
 	document.getElementById("loading-reload").addEventListener("click", function() {
-		location.reload();
+		window.location.reload();
 	});
 
 	window.g_LoungeErrorHandler = function LoungeErrorHandler(e) {

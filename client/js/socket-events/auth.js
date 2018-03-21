@@ -3,6 +3,7 @@
 const $ = require("jquery");
 const socket = require("../socket");
 const storage = require("../localStorage");
+const location = require("../location");
 const utils = require("../utils");
 const templates = require("../../views");
 
@@ -12,7 +13,7 @@ socket.on("auth", function(data) {
 	if (utils.serverHash > -1 && data.serverHash > -1 && data.serverHash !== utils.serverHash) {
 		socket.disconnect();
 		$("#connection-error").text("Server restarted, reloading…");
-		location.reload(true);
+		location.forceReload();
 		return;
 	}
 

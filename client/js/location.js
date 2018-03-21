@@ -6,4 +6,7 @@ module.exports = {
 	reload() {
 		window.location.reload();
 	},
+	forceReload() {
+		window.location.reload(true);
+	},
 };
