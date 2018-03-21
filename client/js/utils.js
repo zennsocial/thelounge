@@ -1,10 +1,11 @@
 "use strict";
 
-const $ = require("jquery");
-const escape = require("css.escape");
-const viewport = $("#viewport");
+// const $ = require("jquery");
+// const escape = require("css.escape");
+// const viewport = $("#viewport");
 
-var serverHash = -1; // eslint-disable-line no-var
+// FIXME: 42 for test purposes, obviously not something that should stay
+var serverHash = 42; // eslint-disable-line no-var
 var lastMessageId = -1; // eslint-disable-line no-var
 
 module.exports = {
@@ -96,7 +97,7 @@ function setNick(nick) {
 	$("#nick-value").text(nick);
 }
 
-const favicon = $("#favicon");
+// const favicon = $("#favicon");
 
 function toggleNotificationMarkers(newState) {
 	// Toggles the favicon to red when there are unread notifications

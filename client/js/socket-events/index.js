@@ -1,6 +1,9 @@
 "use strict";
 
-require("./auth");
+const $ = require("jquery");
+const socket = require("../socket");
+
+require("./auth")($, socket);
 require("./change_password");
 require("./init");
 require("./join");
