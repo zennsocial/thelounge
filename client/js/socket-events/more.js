@@ -93,6 +93,13 @@ socket.on("more", function(data) {
 	const showMoreBtn = scrollable.find(".show-more button");
 	swapText(showMoreBtn);
 	showMoreBtn.prop("disabled", false);
+
+	// If more history has been appended to DOM, but the scroll is still at the top
+	// Press the load button again to load the history further
+	// This usually happens with condensed statuses and netsplits
+	if (data.messages.length >= 100 && scrollable.scrollTop() < 60) {
+		showMoreBtn.trigger("click");
+	}
 });
 
 chat.on("click", ".show-more button", function() {
