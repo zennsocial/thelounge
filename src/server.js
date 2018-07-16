@@ -144,7 +144,7 @@ module.exports = function() {
 		const sockets = io(server, {
 			wsEngine: "ws",
 			serveClient: false,
-			transports: Helper.config.transports,
+			transports: ["websocket", "polling"],
 		});
 
 		sockets.on("connect", (socket) => {

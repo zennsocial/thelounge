@@ -5,7 +5,7 @@ const io = require("socket.io-client");
 const utils = require("./utils");
 
 const socket = io({
-	transports: $(document.body).data("transports"),
+	transports: ["websocket", "polling"],
 	path: window.location.pathname + "socket.io/",
 	autoConnect: false,
 	reconnection: !$(document.body).hasClass("public"),

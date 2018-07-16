@@ -47,7 +47,7 @@
 	<meta name="theme-color" content="<%- themeColor %>">
 
 	</head>
-	<body class="signed-out<%- public ? " public" : "" %>" data-transports="<%- JSON.stringify(transports) %>">
+	<body class="signed-out<%- public ? " public" : "" %>">
 		<div id="viewport" role="tablist">
 			<aside id="sidebar">
 				<div class="scrollable-area">
