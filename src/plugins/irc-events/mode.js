@@ -21,6 +21,9 @@ module.exports = function(irc, network) {
 			return;
 		}
 
+		let modes = [];
+		let params = [];
+
 		data.modes.forEach((mode) => {
 			const text = mode.mode;
 			const add = text[0] === "+";
@@ -30,7 +33,19 @@ module.exports = function(irc, network) {
 				targetChan.key = add ? mode.param : "";
 				client.save();
 			}
+
+			modes.push(char);
+
+			if (mode.param) {
+				params.push(mode.param);
+			}
 		});
+
+		const msg = new Msg({
+			type: Msg.Type.MODE_CHANNEL,
+			text: `+${modes.join("")} ${params.join(" ")}`,
+		});
+		targetChan.pushMessage(client, msg);
 	});
 
 	irc.on("mode", function(data) {
