@@ -16,6 +16,7 @@ const colors = require("chalk");
 const net = require("net");
 const Identification = require("./identification");
 const changelog = require("./plugins/changelog");
+const packageManager = require("./packageManager");
 
 const themes = require("./plugins/packages/themes");
 themes.loadLocalThemes();
@@ -422,7 +423,16 @@ function initializeClient(socket, client, token, lastMessage) {
 	});
 
 	socket.on("changelog", () => {
-		changelog.fetch((data) => {
+		const changelogPromise = new Promise((res) => {
+			changelog.fetch((data) => {
+				res(data);
+			});
+		});
+		const packagesPromise = packageManager.outdated()
+			.then(() => false)
+			.catch(() => true);
+		Promise.all([changelogPromise, packagesPromise]).then(([data, packageUpdate]) => {
+			data.packages = packageUpdate;
 			socket.emit("changelog", data);
 		});
 	});
