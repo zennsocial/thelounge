@@ -16,6 +16,7 @@ const colors = require("chalk");
 const net = require("net");
 const Identification = require("./identification");
 const changelog = require("./plugins/changelog");
+const constants = require("./constants");
 
 const themes = require("./plugins/packages/themes");
 themes.loadLocalThemes();
@@ -567,6 +568,7 @@ function initializeClient(socket, client, token, lastMessage) {
 			active: client.lastActiveChannel,
 			networks: client.networks.map((network) => network.getFilteredClone(client.lastActiveChannel, lastMessage)),
 			token: tokenToSend,
+			commands: constants.getCommands()
 		});
 	};
 

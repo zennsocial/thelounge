@@ -6,8 +6,10 @@ const path = require("path");
 const Helper = require("../../helper");
 const themes = require("./themes");
 const packageMap = new Map();
+const constants = require('../../constants');
 
 const stylesheets = [];
+
 
 module.exports = {
 	getStylesheets,
@@ -19,6 +21,9 @@ const packageApis = function(packageName) {
 	return {
 		Stylesheets: {
 			addFile: addStylesheet.bind(this, packageName),
+		},
+		Commands: {
+			add: (command, func) => constants.inputs[command] = func
 		},
 	};
 };

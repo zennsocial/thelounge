@@ -9,9 +9,14 @@ const slideoutMenu = require("../slideout");
 const sidebar = $("#sidebar");
 const storage = require("../localStorage");
 const utils = require("../utils");
+const constants = require("../constants");
 
 socket.on("init", function(data) {
 	$("#loading-page-message, #connection-error").text("Rendering…");
+
+	if (data.commands) {
+		constants.commands = data.commands;
+	}
 
 	const lastMessageId = utils.lastMessageId;
 	let previousActive = 0;

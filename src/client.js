@@ -10,6 +10,7 @@ const Network = require("./models/network");
 const Helper = require("./helper");
 const UAParser = require("ua-parser-js");
 const uuidv4 = require("uuid/v4");
+const constants = require("./constants");
 
 const MessageStorage = require("./plugins/messageStorage/sqlite");
 const TextFileMessageStorage = require("./plugins/messageStorage/text");
@@ -39,33 +40,6 @@ const events = [
 	"list",
 	"whois",
 ];
-const inputs = [
-	"ban",
-	"ctcp",
-	"msg",
-	"part",
-	"rejoin",
-	"action",
-	"away",
-	"connect",
-	"disconnect",
-	"ignore",
-	"invite",
-	"kick",
-	"mode",
-	"nick",
-	"notice",
-	"query",
-	"quit",
-	"raw",
-	"topic",
-	"list",
-	"whois",
-].reduce(function(plugins, name) {
-	const plugin = require(`./plugins/inputs/${name}`);
-	plugin.commands.forEach((command) => plugins[command] = plugin);
-	return plugins;
-}, {});
 
 function Client(manager, name, config = {}) {
 	_.merge(this, {
@@ -354,12 +328,15 @@ Client.prototype.inputLine = function(data) {
 	const irc = target.network.irc;
 	let connected = irc && irc.connection && irc.connection.connected;
 
-	if (cmd in inputs) {
-		const plugin = inputs[cmd];
+	if (cmd in constants.inputs) {
+		const plugin = constants.inputs[cmd];
 
 		if (connected || plugin.allowDisconnected) {
 			connected = true;
-			plugin.input.apply(client, [target.network, target.chan, cmd, args]);
+			const response = plugin.input.apply(client, [target.network, target.chan, cmd, args]);
+			if (response && typeof response === "string") {
+				this.inputLine({target: data.target, text: response});
+			}
 		}
 	} else if (connected) {
 		irc.raw(text);
