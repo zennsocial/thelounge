@@ -1,7 +1,7 @@
 <template>
 	<span class="content">
 		<Username :user="message.from" />
-		<i class="hostmask">({{ message.hostmask }})</i>
+		<i class="hostmask"> ({{ message.hostmask }})</i>
 		has left the channel
 		<i
 			v-if="message.text"
